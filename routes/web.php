@@ -29,6 +29,10 @@ Route::group(['middleware' => ['auth']], function () {
         })->name('dashboard');
 
         Route::resource('user', 'Backend\UserController');
+        Route::resource('tentang', 'Backend\TentangController');
+        Route::resource('kontak', 'Backend\KontakController');
+        Route::resource('member', 'Backend\MemberController');
+        Route::resource('berita', 'Backend\BeritaController');
 
     });
 

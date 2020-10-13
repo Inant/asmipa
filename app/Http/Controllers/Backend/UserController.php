@@ -60,4 +60,41 @@ class UserController extends Controller
 
         return redirect()->back()->withStatus('Data berhasil ditambahkan.');
     }
+
+    public function edit($id)
+    {
+        $this->param['pageInfo'] = 'Manage User / Edit Data';
+        $this->param['btnRight']['text'] = 'Lihat Data';
+        $this->param['btnRight']['link'] = route('user.index');
+        $this->param['user'] = User::find($id);
+
+        return \view('backend.user.edit-user', $this->param);
+    }
+
+    public function update(Request $request, $id)
+    {
+        $user = User::find($id);
+
+        $isUnique = $user->email == $request->email ? '' : '|unique:users';
+
+        $validatedData = $request->validate([
+            'nama' => 'required',
+            'email' => 'email'.$isUnique,
+        ]);
+
+        $user->nama = $request->get('nama');
+        $user->email = $request->get('email');
+        $user->save();
+
+        return redirect()->back()->withStatus('Data berhasil diperbarui.');
+    }
+
+    public function destroy($id)
+    {
+        $member = Member::findOrFail($id);
+
+        $member->delete();
+
+        return redirect()->route('member.index')->withStatus('Data berhasil dihapus.');
+    }
 }

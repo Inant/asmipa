@@ -26,8 +26,9 @@
     <link href="{{ asset('backend/css/sb-admin-2.min.css') }}" rel="stylesheet" />
     <link href="{{ asset('backend/vendor/datatables/dataTables.bootstrap4.min.css') }}" rel="stylesheet" />
     <link href="{{ asset('backend/vendor/select2-develop/dist/css/select2.min.css') }}" rel="stylesheet" />
-    <link href="{{ asset('backend/vendor/bootstrap-datepicker-master/dist/css/bootstrap-datepicker3.standalone.min.css') }}" rel="stylesheet" />
+    <link href="{{ asset('backend/vendor/bootstrap-datepicker/dist/css/bootstrap-datepicker3.standalone.min.css') }}" rel="stylesheet" />
     <link href="{{ asset('backend/css/custom.css') }}" rel="stylesheet" />
+    <script src="{{ asset('backend/vendor/ckeditor/ckeditor.js') }}"></script>
   </head>
 
   <body id="page-top">
@@ -70,6 +71,35 @@
               <span>Manage User</span></a
             >
           </li>
+
+          <li class="nav-item {{Request::segment(2) == 'tentang' ? 'active' : ''}}">
+            <a class="nav-link" href="{{url('administrator/tentang')}}">
+              <i class="fas fa-fw fa-info"></i>
+              <span>Tentang</span></a
+            >
+          </li>
+          
+          <li class="nav-item {{Request::segment(2) == 'kontak' ? 'active' : ''}}">
+            <a class="nav-link" href="{{url('administrator/kontak')}}">
+              <i class="fas fa-fw fa-phone"></i>
+              <span>Kontak</span></a
+            >
+          </li>
+          
+          <li class="nav-item {{Request::segment(2) == 'member' ? 'active' : ''}}">
+            <a class="nav-link" href="{{url('administrator/member')}}">
+              <i class="fas fa-fw fa-users"></i>
+              <span>Member</span></a
+            >
+          </li>
+          
+          <li class="nav-item {{Request::segment(2) == 'berita' ? 'active' : ''}}">
+            <a class="nav-link" href="{{url('administrator/berita')}}">
+              <i class="fas fa-fw fa-newspaper"></i>
+              <span>Berita</span></a
+            >
+          </li>
+          
           <!-- Sidebar Toggler (Sidebar) -->
           <div class="text-center d-none d-md-inline">
             <button class="rounded-circle border-0" id="sidebarToggle"></button>
