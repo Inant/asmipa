@@ -1,0 +1,21 @@
+/* body {
+  font-family: 'Quicksand', sans-serif;
+} */
+@font-face {
+  font-family: "poppinsregular";
+  src: url("../../backend/font/poppins/poppins-regular-webfont.woff2") format("woff2"),
+      url("../../backend/font/poppins/poppins-regular-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+body {
+  font-family: "poppinsregular";
+  background: #f2f7fb;
+  font-size: 14px;
+}
+.box{
+  padding: 10px;
+  margin: 10px;
+  border: 1px solid #d6e3ea;
+}

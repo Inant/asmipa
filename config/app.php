@@ -55,6 +55,7 @@ return [
     'url' => env('APP_URL', 'http://localhost/asmipa'),
 
     'asset_url' => env('ASSET_URL', 'http://localhost/asmipa/public/assets'),
+    // 'asset_url' => env('ASSET_URL', 'http://192.168.100.6/asmipa/public/assets'),
 
     /*
     |--------------------------------------------------------------------------

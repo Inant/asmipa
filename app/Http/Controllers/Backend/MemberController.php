@@ -45,31 +45,61 @@ class MemberController extends Controller
     {
         $validatedData = $request->validate([
             'nama' => 'required',
-            'gender' => 'required',
+            'email' => 'required|email|unique:member',
+            'tempat_lahir' => 'required',
+            'tgl_lahir' => 'required|date',
+            'alamat' => 'required',
+            'no_telepon' => 'required',
+            'nama_perusahaan' => 'required',
+            'nama_pemilik' => 'required',
+            'alamat_perusahaan' => 'required',
+            'no_ahu' => 'required',
+            'bidang_usaha' => 'required',
+            'no_telepon_perusahaan' => 'required',
+            'jabatan' => 'required',
         ]);
 
         $newMember = new Member;
 
         $newMember->nama = $request->get('nama');
-        $newMember->gender = $request->get('gender');
+        $newMember->email = $request->get('email');
+        $newMember->tempat_lahir = $request->get('tempat_lahir');
+        $newMember->tgl_lahir = $request->get('tgl_lahir');
         $newMember->alamat = $request->get('alamat');
-        $newMember->kontak = $request->get('kontak');
-        $newMember->jabatan = $request->get('jabatan');
-        
-        if($request->file('foto')){
-            $foto = $request->file('foto');
-            $pathUpload = 'public/assets/backend/img/member';
-            $namaFoto = time().".".$foto->getClientOriginalName();
-            $foto->move($pathUpload, $namaFoto);
-            $newMember->foto = $namaFoto;
+        $newMember->no_telepon = $request->get('no_telepon');
+        $newMember->nama_perusahaan = $request->get('nama_perusahaan');
+        $newMember->nama_pemilik = $request->get('nama_pemilik');
+        $newMember->alamat_perusahaan = $request->get('alamat_perusahaan');
+        // $newMember->no_ahu = $request->get('no_ahu');
+        if($request->file('no_ahu')){
+            $no_ahu = $request->file('no_ahu');
+            $pathUpload = 'public/assets/backend/berkas/member';
+            $namaFile = time().".".$no_ahu->getClientOriginalName();
+            $no_ahu->move($pathUpload, $namaFile);
+            $newMember->no_ahu = $namaFile;
         }
         else{
-            $newMember->foto = 'default.png';
+            $newMember->no_ahu = 'default.png';
         }
+
+        $newMember->bidang_usaha = $request->get('bidang_usaha');
+        $newMember->no_telepon_perusahaan = $request->get('no_telepon_perusahaan');
+        $newMember->jabatan = $request->get('jabatan');
+        $newMember->status = 'Terima';
 
         $newMember->save();
 
-        return redirect()->back()->withStatus('Data berhasil ditambahkan.');
+        return redirect()->back()->withStatus('Data berhasil disimpan.');
+    }
+
+    public function show($id)
+    {
+        $this->param['pageInfo'] = 'Manage Member / Detail';
+        $this->param['btnRight']['text'] = 'Kembali';
+        $this->param['btnRight']['link'] = route('member.index');
+        $this->param['member'] = Member::find($id);
+
+        return \view('backend.member.show-member', $this->param);
     }
 
     public function edit($id)
@@ -84,30 +114,58 @@ class MemberController extends Controller
 
     public function update(Request $request, $id)
     {
+        $member = Member::find($id);
+        $isUnique = $member->email == $request->email ? '' : '|unique:member';
         $validatedData = $request->validate([
             'nama' => 'required',
-            'gender' => 'required',
+            'email' => 'required|email'.$isUnique,
+            'tempat_lahir' => 'required',
+            'tgl_lahir' => 'required|date',
+            'alamat' => 'required',
+            'no_telepon' => 'required',
+            'nama_perusahaan' => 'required',
+            'nama_pemilik' => 'required',
+            'alamat_perusahaan' => 'required',
+            'bidang_usaha' => 'required',
+            'no_telepon_perusahaan' => 'required',
+            'jabatan' => 'required',
         ]);
 
-        $member = Member::find($id);
 
 
         $member->nama = $request->get('nama');
-        $member->gender = $request->get('gender');
+        $member->email = $request->get('email');
+        $member->tempat_lahir = $request->get('tempat_lahir');
+        $member->tgl_lahir = $request->get('tgl_lahir');
         $member->alamat = $request->get('alamat');
-        $member->kontak = $request->get('kontak');
-        $member->jabatan = $request->get('jabatan');
-        
-        if($request->file('foto')){
-            $foto = $request->file('foto');
-            $pathUpload = 'public/assets/backend/img/member';
-            $namaFoto = time().".".$foto->getClientOriginalName();
-            $foto->move($pathUpload, $namaFoto);
-            $member->foto = $namaFoto;
+        $member->no_telepon = $request->get('no_telepon');
+        $member->nama_perusahaan = $request->get('nama_perusahaan');
+        $member->nama_pemilik = $request->get('nama_pemilik');
+        $member->alamat_perusahaan = $request->get('alamat_perusahaan');
+        // $member->no_ahu = $request->get('no_ahu');
+        if($request->file('no_ahu')){
+            $no_ahu = $request->file('no_ahu');
+            $pathUpload = 'public/assets/backend/berkas/member';
+            $namaFile = time().".".$no_ahu->getClientOriginalName();
+            $no_ahu->move($pathUpload, $namaFile);
+            $member->no_ahu = $namaFile;
         }
+
+        $member->bidang_usaha = $request->get('bidang_usaha');
+        $member->no_telepon_perusahaan = $request->get('no_telepon_perusahaan');
+        $member->jabatan = $request->get('jabatan');
+        $member->status = 'Terima';
 
         $member->save();
 
+        return redirect()->back()->withStatus('Data berhasil diperbarui.');
+    }
+
+    public function approve($id)
+    {
+        $member = Member::findOrFail($id);
+        $member->status = 'Terima';
+        $member->save();
         return redirect()->back()->withStatus('Data berhasil diperbarui.');
     }
 

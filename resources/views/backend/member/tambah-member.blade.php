@@ -15,73 +15,170 @@
     <hr>
     <form action="{{ route('member.store') }}" method="POST" enctype="multipart/form-data">
       @csrf
-      <label>Nama</label>
-      <input type="text" class="form-control {{ $errors->has('nama') ? ' is-invalid' : '' }}" value="{{ old('nama') }}" autofocus name="nama" placeholder="ex : Anthony Davis">
-      @if ($errors->has('nama'))
-          <span class="invalid-feedback" role="alert">
-              <strong>{{ $errors->first('nama') }}</strong>
-          </span>
-      @endif
-
-      <br>
-      
-      <label>Gender</label>
-      <br>
-      <div class="form-check form-check-inline">
-        <input class="form-check-input {{ $errors->has('gender') ? ' is-invalid' : '' }}" type="radio" id="Laki-laki" name="gender" value="Laki-laki" {{old('gender') == 'Laki-laki' ? 'checked' : ''}} >
-        <label class="form-check-label" for="Laki-laki">Laki-laki</label>
+      <div class="form-group">
+        <label for="nama">Nama</label>
+        <input type="text" name="nama" id="nama" class="form-control @error('nama') is-invalid @enderror" placeholder="ex : Lebron James" value="{{old('nama')}}">
+        @error('nama')
+        <div class="invalid-feedback">
+          {{$message}}
+        </div>
+        @enderror
       </div>
-      <div class="form-check form-check-inline">
-        <input class="form-check-input {{ $errors->has('gender') ? ' is-invalid' : '' }}" type="radio" id="Perempuan" name="gender" value="Perempuan" {{old('gender') == 'Perempuan' ? 'checked' : ''}}>
-        <label class="form-check-label" for="Perempuan">Perempuan</label>
+      
+      <div class="form-group">
+        <label for="email">Email</label>
+        <input type="email" name="email" id="email" class="form-control @error('email') is-invalid @enderror" placeholder="ex : lebronjames@gmail.com" value="{{old('email')}}">
+        @error('email')
+        <div class="invalid-feedback">
+          {{$message}}
+        </div>
+        @enderror
       </div>
-      @if ($errors->has('gender'))
-          <span class="invalid-feedback" role="alert">
-              <strong>{{ $errors->first('gender') }}</strong>
-          </span>
-      @endif
-      <br>
-      <br>
 
-      <label>Alamat</label>
-      <textarea name="alamat" rows="3" class="form-control {{ $errors->has('alamat') ? ' is-invalid' : '' }}"> {{old('alamat')}} </textarea>
-      @if ($errors->has('alamat'))
-          <span class="invalid-feedback" role="alert">
-              <strong>{{ $errors->first('alamat') }}</strong>
-          </span>
-      @endif
+      <div class="form-group">
+        <label for="tempat_lahir">Tempat Lahir</label>
+        <input type="text" name="tempat_lahir" id="tempat_lahir" class="form-control @error('tempat_lahir') is-invalid @enderror" placeholder="ex : Surabaya" value="{{old('tempat_lahir')}}">
+        @error('tempat_lahir')
+        <div class="invalid-feedback">
+          {{$message}}
+        </div>
+        @enderror
+      </div>
 
-      <br>
+      <div class="form-group">
+        <label for="tgl_lahir">Tanggal Lahir</label>
+        <input type="text" name="tgl_lahir" id="tgl_lahir" class="form-control datepicker @error('tgl_lahir') is-invalid @enderror" placeholder="ex : 1990-08-04" value="{{old('tgl_lahir')}}">
+        @error('tgl_lahir')
+        <div class="invalid-feedback">
+          {{$message}}
+        </div>
+        @enderror
+      </div>
 
-      <label>Kontak</label>
-      <input type="text" class="form-control {{ $errors->has('kontak') ? ' is-invalid' : '' }}" value="{{ old('kontak') }}" name="kontak" placeholder="ex : 082342873xxx">
-      @if ($errors->has('kontak'))
-          <span class="invalid-feedback" role="alert">
-              <strong>{{ $errors->first('kontak') }}</strong>
-          </span>
-      @endif
+      <div class="form-group">
+        <label for="alamat">Alamat</label>
+        <textarea name="alamat" id="alamat" class="form-control @error('alamat') is-invalid @enderror">{{old('alamat')}}</textarea>
+        @error('alamat')
+        <div class="invalid-feedback">
+          {{$message}}
+        </div>
+        @enderror
+      </div>
 
-      <br>
-      
-      <label>Jabatan</label>
-      <input type="text" class="form-control {{ $errors->has('jabatan') ? ' is-invalid' : '' }}" value="{{ old('jabatan') }}" name="jabatan" placeholder="">
-      @if ($errors->has('jabatan'))
-          <span class="invalid-feedback" role="alert">
-              <strong>{{ $errors->first('jabatan') }}</strong>
-          </span>
-      @endif
+      <div class="form-group">
+        <label for="no_telepon">Nomor Telepon</label>
+        <input type="number" name="no_telepon" id="no_telepon" class="form-control @error('no_telepon') is-invalid @enderror" placeholder="ex : 082334xxxxxx" value="{{old('no_telepon')}}">
+        @error('no_telepon')
+        <div class="invalid-feedback">
+          {{$message}}
+        </div>
+        @enderror
+      </div>
 
-      <br>
-      
-      <label>Foto</label>
-      <input type="file" class="form-control {{ $errors->has('foto') ? ' is-invalid' : '' }}" name="foto" placeholder="">
-      @if ($errors->has('foto'))
-          <span class="invalid-feedback" role="alert">
-              <strong>{{ $errors->first('foto') }}</strong>
-          </span>
-      @endif
+      <div class="form-group">
+        <label for="nama_perusahaan">Nama Perusahaan</label>
+        <input type="text" name="nama_perusahaan" id="nama_perusahaan" class="form-control @error('nama_perusahaan') is-invalid @enderror" placeholder="ex : PT Pemuda Harapan Bangsa" value="{{old('nama_perusahaan')}}">
+        @error('nama_perusahaan')
+        <div class="invalid-feedback">
+          {{$message}}
+        </div>
+        @enderror
+      </div>
 
-      <br>
+      <div class="form-group">
+        <label for="nama_pemilik">Nama Pemilik Perusahaan</label>
+        <input type="text" name="nama_pemilik" id="nama_pemilik" class="form-control @error('nama_pemilik') is-invalid @enderror" placeholder="ex : Lebron James" value="{{old('nama_pemilik')}}">
+        @error('nama_pemilik')
+        <div class="invalid-feedback">
+          {{$message}}
+        </div>
+        @enderror
+      </div>
+
+      <div class="form-group">
+        <label for="alamat_perusahaan">Alamat Perusahaan</label>
+        <textarea name="alamat_perusahaan" id="alamat_perusahaan" class="form-control @error('alamat_perusahaan') is-invalid @enderror">{{old('alamat_perusahaan')}}</textarea>
+        @error('alamat_perusahaan')
+        <div class="invalid-feedback">
+          {{$message}}
+        </div>
+        @enderror
+      </div>
+
+      <div class="form-group">
+        <label for="no_ahu">Nomor AHU Perusahaan</label>
+        <input type="file" name="no_ahu" id="no_ahu" class="form-control @error('no_ahu') is-invalid @enderror" placeholder="ex : Lebron James">
+        @error('no_ahu')
+        <div class="invalid-feedback">
+          {{$message}}
+        </div>
+        @enderror
+      </div>
+
+      <div class="form-group">
+        <label for="">Bidang Usaha</label>
+        <br>
+        <div class="form-check mb-3">
+          <input class="form-check-input @error('bidang_usaha') is-invalid @enderror" type="radio" name="bidang_usaha" id="hotel" value="Hotel/Homestay" {{old('bidang_usaha') == 'Hotel/Homestay' ? 'checked' : ''}}>
+          <label class="form-check-label" for="hotel">Hotel/Homestay</label>
+        </div>
+
+        <div class="form-check mb-3">
+          <input class="form-check-input @error('bidang_usaha') is-invalid @enderror" type="radio" name="bidang_usaha" id="resto" value="Restoran/Rumah Makan" {{old('bidang_usaha') == 'Restoran/Rumah Makan' ? 'checked' : ''}}>
+          <label class="form-check-label" for="resto">Restoran/Rumah Makan</label>
+        </div>
+
+        <div class="form-check mb-3">
+          <input class="form-check-input @error('bidang_usaha') is-invalid @enderror" type="radio" name="bidang_usaha" id="oleh" value="Pusat Oleh-Oleh" {{old('bidang_usaha') == 'Pusat Oleh-Oleh' ? 'checked' : ''}}>
+          <label class="form-check-label" for="oleh">Pusat Oleh-Oleh</label>
+        </div>
+
+        <div class="form-check mb-3">
+          <input class="form-check-input @error('bidang_usaha') is-invalid @enderror" type="radio" name="bidang_usaha" id="bus" value="PO Bus/Transportasi Wisata" {{old('bidang_usaha') == 'PO Bus/Transportasi Wisata' ? 'checked' : ''}}>
+          <label class="form-check-label" for="bus">PO Bus/Transportasi Wisata</label>
+        </div>
+
+        <div class="form-check mb-3">
+          <input class="form-check-input @error('bidang_usaha') is-invalid @enderror" type="radio" name="bidang_usaha" id="biro" value="Biro Perjalanan Wisata" {{old('bidang_usaha') == 'Biro Perjalanan Wisata' ? 'checked' : ''}}>
+          <label class="form-check-label" for="biro">Biro Perjalanan Wisata</label>
+        </div>
+
+        <div class="form-check mb-3">
+          <input class="form-check-input @error('bidang_usaha') is-invalid @enderror" type="radio" name="bidang_usaha" id="pengelola" value="Pengelola Tempat Wisata" {{old('bidang_usaha') == 'Pengelola Tempat Wisata' ? 'checked' : ''}}>
+          <label class="form-check-label" for="pengelola">Pengelola Tempat Wisata</label>
+        </div>
+
+        <div class="form-check mb-3">
+          <input class="form-check-input @error('bidang_usaha') is-invalid @enderror" type="radio" name="bidang_usaha" id="guide" value="Tour Guide" {{old('bidang_usaha') == 'Tour Guide' ? 'checked' : ''}}>
+          <label class="form-check-label" for="guide">Tour Guide</label>
+        </div>
+
+        @error('bidang_usaha')
+        <div class="invalid-feedback">
+          {{-- Bidang Usaha is required --}}
+        </div>
+        @enderror
+      </div>
+
+      <div class="form-group">
+        <label for="no_telepon_perusahaan">Nomor Telepon Perusahaan</label>
+        <input type="number" name="no_telepon_perusahaan" id="no_telepon_perusahaan" class="form-control @error('no_telepon_perusahaan') is-invalid @enderror" placeholder="ex : 082334xxxxxx" value="{{old('no_telepon_perusahaan')}}">
+        @error('no_telepon_perusahaan')
+        <div class="invalid-feedback">
+          {{$message}}
+        </div>
+        @enderror
+      </div>
+
+      <div class="form-group">
+        <label for="jabatan">Jabatan</label>
+        <input type="text" name="jabatan" id="jabatan" class="form-control @error('jabatan') is-invalid @enderror" placeholder="ex : Owner" value="{{old('jabatan')}}">
+        @error('jabatan')
+        <div class="invalid-feedback">
+          {{$message}}
+        </div>
+        @enderror
+      </div>
 
       <button type="reset" class="btn btn-default"> <span class="fa fa-times"></span> Cancel</button>
 

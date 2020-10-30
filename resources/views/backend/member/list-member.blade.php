@@ -35,11 +35,13 @@
                     <tr>
                         <td>#</td>
                         <td>Nama</td>
-                        <td>Gender</td>
+                        <td>Email</td>
                         <td>Alamat</td>
-                        <td>Kontak</td>
-                        <td>Jabatan</td>
-                        <td>Foto</td>
+                        <td>Nama Perusahaan</td>
+                        <td>Alamat Perusahaan</td>
+                        <td>Nomor Telepon Perusahaan</td>
+                        <td>Bidang Usaha</td>
+                        <td>Status</td>
                         <td>Opsi</td>
                     </tr>
                 </thead>
@@ -52,25 +54,36 @@
                         <tr>
                             <td>{{$no}}</td>
                             <td>{{$value->nama}}</td>
-                            <td>{{$value->gender}}</td>
+                            <td>{{$value->email}}</td>
                             <td>{{$value->alamat}}</td>
-                            <td>{{$value->kontak}}</td>
-                            <td>{{$value->jabatan}}</td>
-                            <td> <img src="{{ asset('backend/img/member') . '/' . $value->foto }}" alt="" width="100px"></td>
+                            <td>{{$value->nama_perusahaan}}</td>
+                            <td>{{$value->alamat_perusahaan}}</td>
+                            <td>{{$value->no_telepon_perusahaan}}</td>
+                            <td>{{$value->bidang_usaha}}</td>
+                            <td>
+                                @if ($value->status == 'Terima')
+                                    <p class="badge badge-success"> {{$value->status}} </p>
+                                @elseif($value->status == 'Pending')
+                                    <p class="badge badge-warning"> {{$value->status}} </p>
+                                @else
+                                    <p class="badge badge-danger"> {{$value->status}} </p>
+                                @endif
+                            </td>
                             <td class="text-center">
                                 <div class="dropdown dropdown-link">
                                     <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
                                         Opsi
                                     </button>
                                     <div class="dropdown-menu">
+                                        <a href="{{ route('member.show', $value) }}" class="dropdown-item">{{ __('Detail') }}</a>
                                         <a href="{{ route('member.edit', $value) }}" class="dropdown-item">{{ __('Edit') }}</a>
-                                        {{-- <form action="{{ route('member.destroy', $value) }}" method="post">
+                                        <form action="{{ route('member.destroy', $value) }}" method="post">
                                             @csrf
                                             @method('delete')
                                             <button type="button" class="mr-1 dropdown-item" onclick="confirm('{{ __("Apakah anda yakin ingin menghapus?") }}') ? this.parentElement.submit() : ''">
                                                 {{ __('Hapus') }}
                                             </button>
-                                        </form>   --}}
+                                        </form>  
                                     </div>
                                 </div>
 
