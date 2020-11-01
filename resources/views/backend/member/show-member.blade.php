@@ -30,6 +30,15 @@
           <td>{{$member->tempat_lahir . ', ' . date('d-m-Y', strtotime($member->tgl_lahir))}}</td>
         </tr>
         <tr>
+          <td>KTP</td>
+          <td>:</td>
+          <td> 
+            <a href="{{ asset('backend/berkas/member/ktp' . '/' . $member->ktp) }}" target="_blank">
+              <button class="btn"><i class="fa fa-download"></i> Download File</button>
+            </a>
+          </td>
+        </tr>
+        <tr>
           <td>Alamat</td>
           <td>:</td>
           <td>{{$member->alamat}}</td>
@@ -58,7 +67,7 @@
           <td>Nomor AHU Perusahaan</td>
           <td>:</td>
           <td> 
-            <a href="{{ asset('backend/berkas/member' . '/' . $member->no_ahu) }}" target="_blank">
+            <a href="{{ asset('backend/berkas/member/no_ahu' . '/' . $member->no_ahu) }}" target="_blank">
               <button class="btn"><i class="fa fa-download"></i> Download File</button>
             </a>
           </td>

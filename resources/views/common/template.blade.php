@@ -15,7 +15,9 @@
       @endphp
       {!!ucwords( str_replace("-"," ",$pageSegment) )!!} | ASMIPA
     </title>
-
+    {{-- favicon --}}
+    <link href="{{ asset('frontend/img/logo.png') }}" rel="icon">
+    <link href="{{ asset('frontend/img/logo.png') }}" rel="apple-touch-icon">
     <!-- Custom fonts for this template-->
     <link
       href="{{ asset('backend/vendor/fontawesome-free/css/all.min.css') }}"
@@ -89,7 +91,7 @@
           <li class="nav-item {{Request::segment(2) == 'member' ? 'active' : ''}}">
             <a class="nav-link" href="{{url('administrator/member')}}">
               <i class="fas fa-fw fa-users"></i>
-              <span>Member</span></a
+              <span>Mitra</span></a
             >
           </li>
           

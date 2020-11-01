@@ -16,7 +16,7 @@ class MemberController extends Controller
 
     public function index(Request $request)
     {
-        $this->param['pageInfo'] = 'Manage Member / List Member';
+        $this->param['pageInfo'] = 'Manage Mitra / List Mitra';
         $this->param['btnRight']['text'] = 'Tambah Data';
         $this->param['btnRight']['link'] = route('member.create');
 
@@ -34,7 +34,7 @@ class MemberController extends Controller
 
     public function create()
     {
-        $this->param['pageInfo'] = 'Manage Member / Tambah Data';
+        $this->param['pageInfo'] = 'Manage Mitra / Tambah Data';
         $this->param['btnRight']['text'] = 'Lihat Data';
         $this->param['btnRight']['link'] = route('member.index');
 
@@ -48,12 +48,13 @@ class MemberController extends Controller
             'email' => 'required|email|unique:member',
             'tempat_lahir' => 'required',
             'tgl_lahir' => 'required|date',
+            'ktp' => 'required|mimes:jpeg,jpg,png,pdf',
             'alamat' => 'required',
             'no_telepon' => 'required',
             'nama_perusahaan' => 'required',
             'nama_pemilik' => 'required',
             'alamat_perusahaan' => 'required',
-            'no_ahu' => 'required',
+            'no_ahu' => 'required|mimes:jpeg,png,jpg,doc,pdf,docx',
             'bidang_usaha' => 'required',
             'no_telepon_perusahaan' => 'required',
             'jabatan' => 'required',
@@ -65,6 +66,16 @@ class MemberController extends Controller
         $newMember->email = $request->get('email');
         $newMember->tempat_lahir = $request->get('tempat_lahir');
         $newMember->tgl_lahir = $request->get('tgl_lahir');
+        if($request->file('ktp')){
+            $ktp = $request->file('ktp');
+            $pathUpload = 'public/assets/backend/berkas/member/ktp';
+            $fileKtp = time().".".$ktp->getClientOriginalName();
+            $ktp->move($pathUpload, $fileKtp);
+            $newMember->ktp = $fileKtp;
+        }
+        else{
+            $newMember->ktp = 'default.png';
+        }
         $newMember->alamat = $request->get('alamat');
         $newMember->no_telepon = $request->get('no_telepon');
         $newMember->nama_perusahaan = $request->get('nama_perusahaan');
@@ -73,7 +84,7 @@ class MemberController extends Controller
         // $newMember->no_ahu = $request->get('no_ahu');
         if($request->file('no_ahu')){
             $no_ahu = $request->file('no_ahu');
-            $pathUpload = 'public/assets/backend/berkas/member';
+            $pathUpload = 'public/assets/backend/berkas/member/no_ahu';
             $namaFile = time().".".$no_ahu->getClientOriginalName();
             $no_ahu->move($pathUpload, $namaFile);
             $newMember->no_ahu = $namaFile;
@@ -94,7 +105,7 @@ class MemberController extends Controller
 
     public function show($id)
     {
-        $this->param['pageInfo'] = 'Manage Member / Detail';
+        $this->param['pageInfo'] = 'Manage Mitra / Detail';
         $this->param['btnRight']['text'] = 'Kembali';
         $this->param['btnRight']['link'] = route('member.index');
         $this->param['member'] = Member::find($id);
@@ -104,7 +115,7 @@ class MemberController extends Controller
 
     public function edit($id)
     {
-        $this->param['pageInfo'] = 'Manage Member / Edit Data';
+        $this->param['pageInfo'] = 'Manage Mitra / Edit Data';
         $this->param['btnRight']['text'] = 'Lihat Data';
         $this->param['btnRight']['link'] = route('member.index');
         $this->param['member'] = Member::find($id);
@@ -121,11 +132,13 @@ class MemberController extends Controller
             'email' => 'required|email'.$isUnique,
             'tempat_lahir' => 'required',
             'tgl_lahir' => 'required|date',
+            'ktp' => 'mimes:jpeg,jpg,png,pdf',
             'alamat' => 'required',
             'no_telepon' => 'required',
             'nama_perusahaan' => 'required',
             'nama_pemilik' => 'required',
             'alamat_perusahaan' => 'required',
+            'no_ahu' => 'mimes:jpeg,png,jpg,doc,pdf,docx',
             'bidang_usaha' => 'required',
             'no_telepon_perusahaan' => 'required',
             'jabatan' => 'required',
@@ -137,6 +150,13 @@ class MemberController extends Controller
         $member->email = $request->get('email');
         $member->tempat_lahir = $request->get('tempat_lahir');
         $member->tgl_lahir = $request->get('tgl_lahir');
+        if($request->file('ktp')){
+            $ktp = $request->file('ktp');
+            $pathUpload = 'public/assets/backend/berkas/member/ktp';
+            $fileKtp = time().".".$ktp->getClientOriginalName();
+            $ktp->move($pathUpload, $fileKtp);
+            $member->ktp = $fileKtp;
+        }
         $member->alamat = $request->get('alamat');
         $member->no_telepon = $request->get('no_telepon');
         $member->nama_perusahaan = $request->get('nama_perusahaan');
@@ -145,7 +165,7 @@ class MemberController extends Controller
         // $member->no_ahu = $request->get('no_ahu');
         if($request->file('no_ahu')){
             $no_ahu = $request->file('no_ahu');
-            $pathUpload = 'public/assets/backend/berkas/member';
+            $pathUpload = 'public/assets/backend/berkas/member/no_ahu';
             $namaFile = time().".".$no_ahu->getClientOriginalName();
             $no_ahu->move($pathUpload, $namaFile);
             $member->no_ahu = $namaFile;

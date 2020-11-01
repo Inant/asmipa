@@ -3,8 +3,10 @@
   <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    {{-- <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> --}}
 
+    <link href="{{ asset('frontend/img/logo.png') }}" rel="icon">
+    <link href="{{ asset('frontend/img/logo.png') }}" rel="apple-touch-icon">
     <!-- Bootstrap CSS -->
     <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -34,8 +36,8 @@
               Astana Mitra Pariwisata
             </a>
       
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-              <ul class="navbar-nav" style="margin-left: 70%">
+            <div class="collapse offset-4 navbar-collapse" id="navbarSupportedContent">
+              <ul class="navbar-nav">
                 <li class="nav-item">
                   <a class="nav-link {{Request::segment(1) == '' ? 'active' : ''}}" href="{{ url('/') }}">Home</a>
                 </li>
@@ -48,8 +50,14 @@
                 <li class="nav-item">
                   <a class="nav-link {{Request::segment(1) == 'kontak' ? 'active' : ''}}" href="{{ url('kontak') }}">Kontak</a>
                 </li>
-                <li class="nav-item">
-                  <a class="nav-link {{Request::segment(1) == 'member' ? 'active' : ''}}" href="{{ url('member/daftar-member') }}">Member</a>
+                <li class="nav-item dropdown">
+                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown">
+                    Mitra
+                  </a>
+                  <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                    <a class="dropdown-item" href="{{ url('member') }}">List Mitra</a>
+                    <a class="dropdown-item" href="{{ url('member/daftar-member', []) }}">Daftar Mitra</a>
+                  </div>
                 </li>
               </ul>
             </div>

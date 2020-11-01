@@ -56,6 +56,16 @@
       </div>
 
       <div class="form-group">
+        <label for="ktp">Foto / Scan KTP</label>
+        <input type="file" name="ktp" id="ktp" class="form-control @error('ktp') is-invalid @enderror" placeholder="ex : Lebron James">
+        @error('ktp')
+        <div class="invalid-feedback">
+          {{$message}}
+        </div>
+        @enderror
+      </div>
+
+      <div class="form-group">
         <label for="alamat">Alamat</label>
         <textarea name="alamat" id="alamat" class="form-control @error('alamat') is-invalid @enderror">{{old('alamat')}}</textarea>
         @error('alamat')
