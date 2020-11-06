@@ -1,88 +1,135 @@
 @extends('common.template')
 @section('container')
 <div class="row dashboard-page">
-    <div class="col-md-12">
-        <label>{{date('d-M-Y, H:i')}}</label>
+    <!-- Content Row -->
+    <div class="col-md-12 mb-4">
+        <label>{{date('d-M-Y')}}</label>
     </div>
-    {{-- <div class="col-md-4 mb-4">
-        <div class="card shadow">
-            <div class="card-header bg-odp">
-                <h5 class="mt-2 font-weight-bold">Penjualan</h5>
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-primary shadow h-100 py-2">
+        <div class="card-body">
+            <div class="row no-gutters align-items-center">
+            <div class="col mr-2">
+                <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Jumlah User</div>
+                <div class="h5 mb-0 font-weight-bold text-gray-800">{{\App\Models\User::count()}}</div>
             </div>
-            <div class="card-body">
-                <div class="row">
-                    <div class="col case">
-                        <div class="img-thumbnail py-3">
-                            <img src="{{ asset('assets/img/icons/odp.svg')}}" alt="">
-                            <h6 class="font-weight-bold">5</h6>
-                        </div>
-                    </div>
-                    <div class="col case">
-                        <div class="img-thumbnail py-3">
-                            <img src="{{ asset('assets/img/icons/selesai.svg')}}" alt="">
-                            <h6 class="font-weight-bold">5</h6>
-                        </div>
-                    </div>
-                </div>
+            <div class="col-auto">
+                <i class="fas fa-user fa-2x text-gray-300"></i>
+            </div>
             </div>
         </div>
-    </div> --}}
-    {{-- <div class="col-md-4 mb-4">
-        <div class="card shadow">
-            <div class="card-header bg-pdp">
-                <h5 class="mt-2 font-weight-bold ">Pembelian</h5>
-            </div>
-            <div class="card-body">
-                <div class="row">
-                    <div class="col case">
-                        <div class="img-thumbnail py-3">
-                            <img src="{{ asset('assets/img/icons/pdp.svg')}}" alt="">
-                            <h6 class="font-weight-bold">4</h6>
-                        </div>
-                    </div>
-                    <div class="col case">
-                        <div class="img-thumbnail py-3">
-                            <img src="{{ asset('assets/img/icons/sbh.svg')}}" alt="">
-                            <h6 class="font-weight-bold">6</h6>
-                        </div>
-                    </div>
-                </div>
-            </div>
         </div>
     </div>
-    <div class="col-md-4 mb-4">
-        <div class="card shadow">
-            <div class="card-header bg-positif">
-                <h5 class="mt-2 font-weight-bold">Produksi</h5>
+
+    <!-- Earnings (Monthly) Card Example -->
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-success shadow h-100 py-2">
+        <div class="card-body">
+            <div class="row no-gutters align-items-center">
+            <div class="col mr-2">
+                <div class="text-xs font-weight-bold text-success text-uppercase mb-1">Jumlah Mitra</div>
+                <div class="h5 mb-0 font-weight-bold text-gray-800">{{\App\Models\Member::where('status', 'Terima')->count()}}</div>
+            </div>
+            <div class="col-auto">
+                <i class="fas fa-users fa-2x text-gray-300"></i>
+            </div>
+            </div>
+        </div>
+        </div>
+    </div>
+
+    <!-- Earnings (Monthly) Card Example -->
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-info shadow h-100 py-2">
+        <div class="card-body">
+            <div class="row no-gutters align-items-center">
+            <div class="col mr-2">
+                <div class="text-xs font-weight-bold text-info text-uppercase mb-1">Jumlah Berita</div>
+                <div class="row no-gutters align-items-center">
+                <div class="col-auto">
+                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">{{\App\Models\Berita::count()}}</div>
+                </div>
+                </div>
+            </div>
+            <div class="col-auto">
+                <i class="fas fa-newspaper fa-2x text-gray-300"></i>
+            </div>
+            </div>
+        </div>
+        </div>
+    </div>
+
+    <!-- Pending Requests Card Example -->
+    <div class="col-xl-3 col-md-6 mb-4">
+        <div class="card border-left-warning shadow h-100 py-2">
+        <div class="card-body">
+            <div class="row no-gutters align-items-center">
+            <div class="col mr-2">
+                <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">Pendaftar Baru</div>
+                <div class="h5 mb-0 font-weight-bold text-gray-800">{{\App\Models\Member::where('status', 'Pending')->count()}}</div>
+            </div>
+            <div class="col-auto">
+                <i class="fas fa-clock fa-2x text-gray-300"></i>
+            </div>
+            </div>
+        </div>
+        </div>
+    </div>
+    <div class="col-12 mt-5">
+        <div class="card shadow mb-4">
+            <div class="card-header py-3">
+                <h6 class="m-0 font-weight-bold text-primary">Pendaftar Baru</h6>
             </div>
             <div class="card-body">
-                <div class="row">
-                    <div class="col-md-12 case inline">
-                        <img src="{{ asset('assets/img/icons/positif.svg')}}" alt="">
-                        <h6 class="font-weight-bold">6</h6>
-                        <hr>
-                        <img src="{{ asset('assets/img/icons/sbh.svg')}}" alt="">
-                        <h6 class="font-weight-bold">8 Orang Sembuh</h6>
-                        <hr>
-                        <img src="{{ asset('assets/img/icons/mnggl.svg')}}" alt="">
-                        <h6 class="font-weight-bold">9</h6>
-                    </div>
+                <div class="table-responsive">
+                    <table class="table table-striped table-hover table-bordered table-custom">
+                        <thead>
+                            <tr>
+                                <td>#</td>
+                                <td>Nama</td>
+                                <td>Email</td>
+                                <td>Alamat</td>
+                                <td>Nama Perusahaan</td>
+                                <td>Alamat Perusahaan</td>
+                                <td>Nomor Telepon Perusahaan</td>
+                                <td>Bidang Usaha</td>
+                                <td>Status</td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @php
+                                $member = \App\Models\Member::where('status', 'Pending')->get();
+                                $no = 1;
+                            @endphp
+                            @foreach ($member as $value)
+                                <tr>
+                                    <td>{{$no}}</td>
+                                    <td>{{$value->nama}}</td>
+                                    <td>{{$value->email}}</td>
+                                    <td>{{$value->alamat}}</td>
+                                    <td>{{$value->nama_perusahaan}}</td>
+                                    <td>{{$value->alamat_perusahaan}}</td>
+                                    <td>{{$value->no_telepon_perusahaan}}</td>
+                                    <td>{{$value->bidang_usaha}}</td>
+                                    <td>
+                                        @if ($value->status == 'Terima')
+                                            <p class="badge badge-success"> {{$value->status}} </p>
+                                        @elseif($value->status == 'Pending')
+                                            <p class="badge badge-warning"> {{$value->status}} </p>
+                                        @else
+                                            <p class="badge badge-danger"> {{$value->status}} </p>
+                                        @endif
+                                    </td>
+                                </tr>
+                                @php
+                                    $no++
+                                @endphp
+                            @endforeach
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
-    </div> --}}
-    {{-- <div class="col-md-12">
-        <div class="card shadow">
-            <div class="card-header bg-primary">
-                    <h5 class="mt-2 font-weight-bold">Persentase</h5>
-            </div>
-            <div class="card-body">
-            <figure class="highcharts-figure">
-                <div id="container">
-                </div>
-            </figure>
-            </div>
-        </div>
-    </div> --}}
+    </div>
 </div>
 @endsection

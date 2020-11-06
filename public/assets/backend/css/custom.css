@@ -375,9 +375,6 @@ a:hover {
 .case .img-thumbnail {
     min-height: 135px;
 }
-.dashboard-page .card .card-body {
-    min-height: 227px;
-}
 .case img {
     width: 45px;
 }
