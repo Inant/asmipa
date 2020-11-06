@@ -57,4 +57,31 @@ class TentangController extends Controller
 
         return redirect()->back()->withStatus('Data berhasil diperbarui.');
     }
+
+    public function struktur()
+    {
+        $this->param['pageInfo'] = 'Struktur Organisai / Edit Data';
+        $this->param['struktur'] = Tentang::where('tipe', 'Struktur Organisasi')->get()[0];
+
+        return \view('backend.struktur.struktur', $this->param);
+    }
+
+    public function updateStruktur(Request $request, $id)
+    {
+        
+        $validatedData = $request->validate([
+            'kontent' => 'required',
+        ]);
+        $tentang = Tentang::find($id);
+        if($request->file('kontent')){
+            $struktur = $request->file('kontent');
+            $pathUpload = 'public/assets/backend/img/struktur';
+            $namaFile = time().".".$struktur->getClientOriginalName();
+            $struktur->move($pathUpload, $namaFile);
+            $tentang->kontent = $namaFile;
+        }
+        $tentang->save();
+
+        return redirect()->back()->withStatus('Data berhasil diperbarui.');
+    }
 }

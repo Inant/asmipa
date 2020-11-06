@@ -81,6 +81,13 @@
             >
           </li>
           
+          <li class="nav-item {{Request::segment(2) == 'struktur' ? 'active' : ''}}">
+            <a class="nav-link" href="{{url('administrator/struktur')}}">
+              <i class="fas fa-fw fa-sitemap "></i>
+              <span>Struktur Organisasi</span></a
+            >
+          </li>
+          
           <li class="nav-item {{Request::segment(2) == 'kontak' ? 'active' : ''}}">
             <a class="nav-link" href="{{url('administrator/kontak')}}">
               <i class="fas fa-fw fa-phone"></i>

@@ -1,83 +1,154 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    {{-- <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> --}}
 
-    <link href="{{ asset('frontend/img/logo.png') }}" rel="icon">
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>@yield('title') | ASMIPA</title>
+  <meta content="" name="descriptison">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="{{ asset('frontend/img/logo.png') }}" rel="icon">
     <link href="{{ asset('frontend/img/logo.png') }}" rel="apple-touch-icon">
-    <!-- Bootstrap CSS -->
-    <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link
-      href="{{ asset('backend/vendor/fontawesome-free/css/all.min.css') }}"
-      rel="stylesheet"
-      type="text/css"
-    />
-    <link rel="stylesheet" href="{{ asset('frontend/vendor/bootstrap-datepicker/dist/css/bootstrap-datepicker.standalone.min.css') }}" type="text/css">
-    <link
-      href="{{ asset('frontend/css/custom.css') }}"
-      rel="stylesheet"
-      type="text/css"
-    />
-    <title> @yield('title') | ASMIPA </title>
-  </head>
-  <body background="{{ asset('frontend/img/bg.png') }}">
-    <div class="container">
 
-      <div class="row">
-        <div class="col-12">
-          {{-- navbar --}}
-          <!-- Image and text -->
-          <nav class="navbar navbar-expand-lg navbar-light bg-transparant pb-3">
-            <a class="navbar-brand" href="#">
-              <img src="{{ asset('frontend/img/logo.png') }}" width="60" class="d-inline-block align-top" alt="">
-              Astana Mitra Pariwisata
-            </a>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="{{ asset('frontend2/assets/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+  <link href="{{ asset('frontend2/assets/vendor/icofont/icofont.min.css') }}" rel="stylesheet">
+  <link href="{{ asset('frontend2/assets/vendor/boxicons/css/boxicons.min.css') }}" rel="stylesheet">
+  <link href="{{ asset('frontend2/assets/vendor/animate.css/animate.min.css') }}" rel="stylesheet">
+  <link href="{{ asset('frontend2/assets/vendor/remixicon/remixicon.css') }}" rel="stylesheet">
+  <link href="{{ asset('frontend2/assets/vendor/venobox/venobox.css') }}" rel="stylesheet">
+  <link href="{{ asset('frontend2/assets/vendor/owl.carousel/assets/owl.carousel.min.css') }}" rel="stylesheet">
+  <link rel="stylesheet" href="{{ asset('frontend/vendor/bootstrap-datepicker/dist/css/bootstrap-datepicker.standalone.min.css') }}" type="text/css">
+
+  <!-- Template Main CSS File -->
+  <link href="{{ asset('frontend2/assets/css/style.css') }}" rel="stylesheet">
+  <link href="{{ asset('frontend2/assets/css/custom.css') }}" rel="stylesheet">
+
+  <!-- =======================================================
+  * Template Name: Sailor - v2.1.0
+  * Template URL: https://bootstrapmade.com/sailor-free-bootstrap-theme/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<body>
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="fixed-top">
+    <div class="container d-flex align-items-center">
+      <a href="{{ url('/') }}" class="logo mr-2"><img src="{{ asset('frontend/img/logo.png') }}" alt="" class="img-fluid"></a>
+      <h3 class="logo"><a href="{{ url('/') }}">ASMIPA</a></h3>
+      <!-- Uncomment below if you prefer to use an image logo -->
+
+      <nav class="nav-menu d-none d-lg-block">
+
+        <ul>
+          <li class="{{Request::segment(1) == '' ? 'active' : ''}}"> <a href="{{ url('/') }}">Beranda</a> </li>
+
+          <li class="{{Request::segment(1) == 'tentang' ? 'active' : ''}}"> <a href="{{ url('tentang') }}">Tentang</a> </li>
+
+          <li class="{{Request::segment(1) == 'berita' ? 'active' : ''}}"> <a href="{{ url('berita') }}">Berita</a> </li>
+
+          <li class="{{Request::segment(1) == 'kontak' ? 'active' : ''}}"> <a href="{{ url('kontak') }}">Kontak</a> </li>
+          
+          <li class="drop-down {{Request::segment(1) == 'member' ? 'active' : ''}}"><a href="#">Mitra</a>
+            <ul>
+              <li><a href="{{ url('member') }}">List Mitra</a></li>
+              <li><a href="{{ url('member/daftar-member') }}">Daftar Mitra</a></li>
+            </ul>
+          </li>
+        </ul>
+
+      </nav><!-- .nav-menu -->
+
+      {{-- <a href="index.html" class="get-started-btn ml-auto">Get Started</a> --}}
+
+    </div>
+  </header><!-- End Header -->
+
+  @yield('content')
+
+  <!-- ======= Footer ======= -->
+  
+  <section>
+    <div class="footer-bottom">
+      <div class="container">
+        <div class="row footer-text">
+          <div class="col-12">
+            <div class="row">
+              <div class="col-lg-5 col-md-6">
+                <div class="">
+                  <h3>Astana Mitra Pariwisata</h3>
+                  <p>
+                    Jl Mayjen Sungkono No 08 <br>
+                    Desa Prambangan, Kec Kebomas<br>
+                    Kab Gresik, Jawa Timur<br>
+                  </p>
+                  
+                </div>
+              </div>
       
-            <div class="collapse offset-4 navbar-collapse" id="navbarSupportedContent">
-              <ul class="navbar-nav">
-                <li class="nav-item">
-                  <a class="nav-link {{Request::segment(1) == '' ? 'active' : ''}}" href="{{ url('/') }}">Home</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link {{Request::segment(1) == 'tentang' ? 'active' : ''}}" href="{{ url('tentang') }}">Tentang</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link {{Request::segment(1) == 'berita' ? 'active' : ''}}" href="{{ url('berita') }}">Berita</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link {{Request::segment(1) == 'kontak' ? 'active' : ''}}" href="{{ url('kontak') }}">Kontak</a>
-                </li>
-                <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown">
-                    Mitra
-                  </a>
-                  <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="{{ url('member') }}">List Mitra</a>
-                    <a class="dropdown-item" href="{{ url('member/daftar-member', []) }}">Daftar Mitra</a>
+              <div class="col-lg-4 col-md-6">
+                <h4>Kontak</h4>
+                <p>
+                  <strong>Telepon:</strong> {{\App\Models\Kontak::select('telepon')->get()[0]->telepon}}<br>
+                  <strong>Email:</strong> {{\App\Models\Kontak::select('email')->get()[0]->email}}<br>
+                </p>
+              </div>
+              
+              <div class="col-lg-2 col-md-6">
+                <div class="footer-info">
+                  <h4>Social Media</h4>
+                  <div class="social-links mt-3">
+                    {{-- <a href="#" class="twitter"><i class="bx bxl-twitter"></i></a> --}}
+                    <a href="#" class="facebook"><i class="bx bxl-facebook"></i></a>
+                    <a href="#" class="instagram"><i class="bx bxl-instagram"></i></a>
+                    {{-- <a href="#" class="google-plus"><i class="bx bxl-skype"></i></a> --}}
+                    {{-- <a href="#" class="linkedin"><i class="bx bxl-linkedin"></i></a> --}}
+                    <a href="#" class="youtube"><i class="bx bxl-youtube"></i></a>
                   </div>
-                </li>
-              </ul>
+                </div>
+              </div>
             </div>
-          </nav>
+
+          </div>
+  
+          {{-- <div class="col-lg-4 col-md-6 footer-newsletter">
+            <h4>Our Newsletter</h4>
+            <p>Tamen quem nulla quae legam multos aute sint culpa legam noster magna</p>
+            <form action="" method="post">
+              <input type="email" name="email"><input type="submit" value="Subscribe">
+            </form>
+  
+          </div> --}}
+  
         </div>
       </div>
-      
-      @yield('content')
-
-      <footer style="background: {{asset('frontend/img/footer.png')}} }}">
-
-      </footer>
     </div>
+  </section>
 
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <script src="{{ asset('frontend/vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js') }}"></script>
-    <script src="{{ asset('frontend/js/custom.js') }}"></script>
-  </body>
+  <a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
+
+  <!-- Vendor JS Files -->
+  <script src="{{ asset('frontend2/assets/vendor/jquery/jquery.min.js') }}"></script>
+  <script src="{{ asset('frontend2/assets/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+  <script src="{{ asset('frontend2/assets/vendor/jquery.easing/jquery.easing.min.js') }}"></script>
+  <script src="{{ asset('frontend2/assets/vendor/php-email-form/validate.js') }}"></script>
+  <script src="{{ asset('frontend2/assets/vendor/isotope-layout/isotope.pkgd.min.js') }}"></script>
+  <script src="{{ asset('frontend2/assets/vendor/venobox/venobox.min.js') }}"></script>
+  <script src="{{ asset('frontend2/assets/vendor/waypoints/jquery.waypoints.min.js') }}"></script>
+  <script src="{{ asset('frontend2/assets/vendor/owl.carousel/owl.carousel.min.js') }}"></script>
+
+  <!-- Template Main JS File -->
+  <script src="{{ asset('frontend2/assets/js/main.js') }}"></script>
+
+</body>
+
 </html>

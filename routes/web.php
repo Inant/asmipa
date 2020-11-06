@@ -50,6 +50,8 @@ Route::group(['middleware' => ['auth']], function () {
         })->name('dashboard');
 
         Route::resource('user', 'Backend\UserController');
+        Route::get('struktur', 'Backend\TentangController@struktur');
+        Route::put('update-struktur/{id}', 'Backend\TentangController@updateStruktur')->name('update-struktur');
         Route::resource('tentang', 'Backend\TentangController');
         Route::resource('kontak', 'Backend\KontakController');
         Route::get('member/approve/{id}', 'Backend\MemberController@approve')->name('member.approve');

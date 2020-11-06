@@ -8,10 +8,13 @@ use \App\Models\Berita;
 
 class FBeritaController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $allBerita = Berita::paginate(10);
-
+        $keyword = $request->get('keyword');
+        $allBerita = Berita::paginate(6);
+        if ($keyword) {
+            $allBerita = Berita::where('judul', 'LIKE', "%$keyword%")->orWhere('konten', 'LIKE', "%$keyword%")->paginate(5);
+        }
         return view('frontend.berita.berita', ['allBerita' => $allBerita]);
     }
 
