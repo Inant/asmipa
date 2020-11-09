@@ -67,6 +67,7 @@ class FMemberController extends Controller
 
         $newMember->bidang_usaha = $request->get('bidang_usaha');
         $newMember->no_telepon_perusahaan = $request->get('no_telepon_perusahaan');
+        $newMember->website = $request->get('website');
         $newMember->jabatan = $request->get('jabatan');
         $newMember->status = 'Pending';
 

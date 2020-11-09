@@ -179,6 +179,16 @@
         </div>
         @enderror
       </div>
+      
+      <div class="form-group">
+        <label for="no_telepon_perusahaan">Website</label>
+        <input type="text" name="website" id="website" class="form-control @error('website') is-invalid @enderror" placeholder="ex : www.mywebsite.com" value="{{old('website')}}">
+        @error('website')
+        <div class="invalid-feedback">
+          {{$message}}
+        </div>
+        @enderror
+      </div>
 
       <div class="form-group">
         <label for="jabatan">Jabatan</label>

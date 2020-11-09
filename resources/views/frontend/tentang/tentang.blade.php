@@ -36,7 +36,7 @@
   <section>
     <div class="container">
       <center>
-        <h4>Struktur Kepengurusan ASMIPA</h4>
+        <h4 class="bold">Struktur Kepengurusan ASMIPA</h4>
         <div class="row">
           <div class="col-12">
             <img src="{{ asset('backend/img/struktur' . '/' . \App\Models\Tentang::where('tipe', 'Struktur Organisasi')->get()[0]->kontent ) }}" alt="" class="img-fluid">
@@ -51,15 +51,15 @@
   <div class="container">
     <div style="margin-top: 100px">
     <div class="row mt-5">
-      <div class="col-6">
+      <div class="col-md-6">
         <div class="member-box">
-          <h5>Visi</h5>
+          <h4 class="bold">Visi</h4>
           {!! \App\Models\Tentang::where('tipe', 'Visi')->get()[0]->kontent !!}
         </div>
       </div>
-      <div class="col-6">
+      <div class="col-md-6">
         <div class="member-box">
-          <h5>Misi</h5>
+          <h4 class="bold">Misi</h4>
           {!! \App\Models\Tentang::where('tipe', 'Misi')->get()[0]->kontent !!}
         </div>
       </div>

@@ -55,7 +55,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::resource('tentang', 'Backend\TentangController');
         Route::resource('kontak', 'Backend\KontakController');
         Route::get('member/approve/{id}', 'Backend\MemberController@approve')->name('member.approve');
-        Route::get('member/disapprove/{id}', 'Backend\MemberController@approve')->name('member.disapprove');
+        Route::get('member/disapprove/{id}', 'Backend\MemberController@disapprove')->name('member.disapprove');
         Route::resource('member', 'Backend\MemberController');
         Route::resource('berita', 'Backend\BeritaController');
 

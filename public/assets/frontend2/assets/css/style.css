@@ -16,14 +16,20 @@
 /* a {
   color: #d9232d;
 } */
-
+/* @font-face {
+  font-family: 'Poppins', sans-serif;
+  src: url("../../../../assets/backend/font/poppins/poppins-regular-webfont.woff2") format("woff2"),
+      url("../../../../assets/backend/font/poppins/poppins-regular-webfont.woff") format("woff");
+  font-weight: 500;
+  font-style: normal;
+} */
 a:hover {
   /* color: #e24d55; */
   text-decoration: none;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: "Raleway", sans-serif;
+  font-family: 'Poppins', sans-serif;
 }
 
 /*--------------------------------------------------------------
@@ -124,7 +130,7 @@ h1, h2, h3, h4, h5, h6 {
   transition: 0.3s;
   font-size: 15px;
   font-weight: 500;
-  font-family: "Poppins", sans-serif;
+  font-family: 'Poppins', sans-serif;
 }
 
 .nav-menu a:hover, .nav-menu .active > a, .nav-menu li:hover > a {
@@ -472,7 +478,7 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 #hero .btn-get-started {
-  font-family: "Raleway", sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-weight: 500;
   font-size: 14px;
   letter-spacing: 1px;
@@ -1123,7 +1129,7 @@ section {
   transition: none;
   font-size: 14px;
   font-weight: 400;
-  font-family: "Raleway", sans-serif;
+  font-family: 'Poppins', sans-serif;
   font-weight: 600;
   transition: 0.3s;
 }
@@ -1470,7 +1476,7 @@ section {
 }
 
 .blog .entry .entry-title {
-  font-size: 16px;
+  /* font-size: 16px; */
   line-height: 26px;
   font-weight: bold;
   padding: 0;
@@ -1483,11 +1489,11 @@ section {
 }
 
 .blog .entry .entry-title a:hover {
-  color: #d9232d;
+  color: #4887c7;
 }
 
 .blog .entry .entry-meta {
-  margin-bottom: 15px;
+  /* margin-bottom: 15px; */
   color: #c1c8d0;
 }
 
@@ -1517,7 +1523,7 @@ section {
 
 .blog .entry .entry-content p {
   line-height: 24px;
-  font-size: 15px;
+  font-size: 16px;
 }
 
 .blog .entry .entry-content .read-more {
@@ -1536,7 +1542,7 @@ section {
 }
 
 .blog .entry .entry-content .read-more a:hover {
-  background: #e1444d;
+  background: #4887c7;
 }
 
 .blog .entry .entry-content h3 {
@@ -1906,7 +1912,7 @@ section {
 }
 
 .blog .sidebar .categories ul a:hover {
-  color: #d9232d;
+  color: #4887c7;
 }
 
 .blog .sidebar .categories ul a span {
@@ -1936,7 +1942,7 @@ section {
 }
 
 .blog .sidebar .recent-posts h4 a:hover {
-  color: #d9232d;
+  color: #4887c7;
 }
 
 .blog .sidebar .recent-posts time {
@@ -2020,7 +2026,7 @@ section {
   font-size: 14px;
   line-height: 24px;
   margin-bottom: 0;
-  font-family: "Raleway", sans-serif;
+  font-family: 'Poppins', sans-serif;
   color: #fff;
 }
 

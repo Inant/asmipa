@@ -83,6 +83,11 @@
           <td>{{$member->no_telepon_perusahaan}}</td>
         </tr>
         <tr>
+          <td>Website</td>
+          <td>:</td>
+          <td>{{$member->website}}</td>
+        </tr>
+        <tr>
           <td>Jabatan</td>
           <td>:</td>
           <td>{{$member->jabatan}}</td>

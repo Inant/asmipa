@@ -26,7 +26,7 @@ class MemberController extends Controller
             $member = Member::where('nama', 'LIKE', "%$keyword%")->paginate(10);
         }
         else{
-            $member = Member::paginate(10);
+            $member = Member::orderBy('id', 'desc')->paginate(10);
         }
         
         return \view('backend.member.list-member', ['member' => $member], $this->param);
@@ -95,6 +95,7 @@ class MemberController extends Controller
 
         $newMember->bidang_usaha = $request->get('bidang_usaha');
         $newMember->no_telepon_perusahaan = $request->get('no_telepon_perusahaan');
+        $newMember->website = $request->get('website');
         $newMember->jabatan = $request->get('jabatan');
         $newMember->status = 'Terima';
 
@@ -173,6 +174,7 @@ class MemberController extends Controller
 
         $member->bidang_usaha = $request->get('bidang_usaha');
         $member->no_telepon_perusahaan = $request->get('no_telepon_perusahaan');
+        $member->website = $request->get('website');
         $member->jabatan = $request->get('jabatan');
         $member->status = 'Terima';
 
@@ -186,6 +188,29 @@ class MemberController extends Controller
         $member = Member::findOrFail($id);
         $member->status = 'Terima';
         $member->save();
+
+        $to_name = $member->nama;
+        $to_email = $member->email;
+        $data = array('nama'=>$member->nama, "body" => "Anda telah diterima menjadi mitra resmi ASMIPA.");
+        \Mail::send('emails', $data, function($message) use ($to_name, $to_email) {
+        $message->to($to_email, $to_name)->subject('Persetujuan Mitra ASMIPA');
+        $message->from('astanamitra.p@gmail.com','Astana Mitra Pariwisata');
+        });
+        return redirect()->back()->withStatus('Data berhasil diperbarui.');
+    }
+    
+    public function disapprove($id)
+    {
+        $member = Member::findOrFail($id);
+        $member->status = 'Tolak';
+        $member->save();
+        $to_name = $member->nama;
+        $to_email = $member->email;
+        $data = array('nama'=>$member->nama, "body" => "Mohon maaf anda belum diterima untuk menjadi mitra resmi ASMIPA.");
+        \Mail::send('emails', $data, function($message) use ($to_name, $to_email) {
+        $message->to($to_email, $to_name)->subject('Persetujuan Mitra ASMIPA');
+        $message->from('astanamitra.p@gmail.com','Astana Mitra Pariwisata');
+        });
         return redirect()->back()->withStatus('Data berhasil diperbarui.');
     }
 

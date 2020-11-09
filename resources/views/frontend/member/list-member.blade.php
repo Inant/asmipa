@@ -27,7 +27,7 @@
               </thead>
               <tbody>
                 @php
-                    $member = \App\Models\Member::paginate(10);
+                    $member = \App\Models\Member::where('status', 'Terima')->paginate(10);
                     
                     $page = Request::get('page');
                     $no = !$page || $page == 1 ? 1 : ($page - 1) * 10 + 1;

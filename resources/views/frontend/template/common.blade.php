@@ -14,7 +14,10 @@
     <link href="{{ asset('frontend/img/logo.png') }}" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+  {{-- <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet"> --}}
+  {{-- <link href="https://fonts.googleapis.com/css2?family=Montserrat&display=swap" rel="stylesheet"> --}}
+  {{-- <link href="https://fonts.googleapis.com/css2?family=Lato&family=Montserrat&display=swap" rel="stylesheet"> --}}
+  <link href="https://fonts.googleapis.com/css2?family=Lato&family=Montserrat&family=Open+Sans&family=Poppins&display=swap" rel="stylesheet">
 
   <!-- Vendor CSS Files -->
   <link href="{{ asset('frontend2/assets/vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
@@ -60,8 +63,8 @@
           
           <li class="drop-down {{Request::segment(1) == 'member' ? 'active' : ''}}"><a href="#">Mitra</a>
             <ul>
-              <li><a href="{{ url('member') }}">List Mitra</a></li>
-              <li><a href="{{ url('member/daftar-member') }}">Daftar Mitra</a></li>
+              <li><a href="{{ url('member') }}">Mitra Resmi ASMIPA</a></li>
+              <li><a href="{{ url('member/daftar-member') }}">Daftar Menjadi Mitra</a></li>
             </ul>
           </li>
         </ul>
@@ -77,8 +80,8 @@
 
   <!-- ======= Footer ======= -->
   
-  <section>
-    <div class="footer-bottom">
+  {{-- <section> --}}
+    <div class="footer-bottom py-5">
       <div class="container">
         <div class="row footer-text">
           <div class="col-12">
@@ -132,7 +135,7 @@
         </div>
       </div>
     </div>
-  </section>
+  {{-- </section> --}}
 
   <a href="#" class="back-to-top"><i class="icofont-simple-up"></i></a>
 
@@ -145,9 +148,11 @@
   <script src="{{ asset('frontend2/assets/vendor/venobox/venobox.min.js') }}"></script>
   <script src="{{ asset('frontend2/assets/vendor/waypoints/jquery.waypoints.min.js') }}"></script>
   <script src="{{ asset('frontend2/assets/vendor/owl.carousel/owl.carousel.min.js') }}"></script>
+  <script src="{{ asset('backend/vendor/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js') }}"></script>
 
   <!-- Template Main JS File -->
   <script src="{{ asset('frontend2/assets/js/main.js') }}"></script>
+  <script src="{{ asset('frontend/js/custom.js') }}"></script>
 
 </body>
 

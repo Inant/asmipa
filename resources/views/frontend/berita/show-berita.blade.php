@@ -53,7 +53,7 @@
             </ul>
           </div>
 
-          <div class="entry-content">
+          <div class="entry-content py-3">
             {!!$berita->konten!!}
           </div>
 
