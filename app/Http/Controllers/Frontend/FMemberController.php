@@ -73,6 +73,6 @@ class FMemberController extends Controller
 
         $newMember->save();
 
-        return redirect()->back()->withStatus('Data berhasil disimpan dan menunggu proses approval.');
+        return redirect()->back()->withStatus('Data berhasil disimpan dan menunggu proses persetujuan. Status persetujuan akan dikirim ke email anda.');
     }
 }

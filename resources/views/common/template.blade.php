@@ -16,8 +16,8 @@
       {!!ucwords( str_replace("-"," ",$pageSegment) )!!} | ASMIPA
     </title>
     {{-- favicon --}}
-    <link href="{{ asset('frontend/img/logo.png') }}" rel="icon">
-    <link href="{{ asset('frontend/img/logo.png') }}" rel="apple-touch-icon">
+    <link href="{{ asset('backend/img/logo.png') }}" rel="icon">
+    <link href="{{ asset('backend/img/logo.png') }}" rel="apple-touch-icon">
     <!-- Custom fonts for this template-->
     <link
       href="{{ asset('backend/vendor/fontawesome-free/css/all.min.css') }}"

@@ -12,17 +12,8 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-
 Route::get('/', function () {
-    return view('frontend.home.home');
-});
-
-Route::get('tentang', function () {
-    return view('frontend.tentang.tentang');
-});
-
-Route::get('kontak', function () {
-    return view('frontend.kontak.kontak');
+    return view('frontend.template.common');
 });
 
 Route::get('berita', 'Frontend\FBeritaController@index');
