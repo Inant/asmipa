@@ -11,9 +11,9 @@ class FBeritaController extends Controller
     public function index(Request $request)
     {
         $keyword = $request->get('keyword');
-        $allBerita = Berita::paginate(5);
+        $allBerita = Berita::orderBy('id', 'desc')->paginate(5);
         if ($keyword) {
-            $allBerita = Berita::where('judul', 'LIKE', "%$keyword%")->orWhere('konten', 'LIKE', "%$keyword%")->paginate(5);
+            $allBerita = Berita::where('judul', 'LIKE', "%$keyword%")->orWhere('konten', 'LIKE', "%$keyword%")->orderBy('id', 'desc')->paginate(5);
         }
         return view('frontend.berita.berita', ['allBerita' => $allBerita]);
     }

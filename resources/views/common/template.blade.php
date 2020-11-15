@@ -109,6 +109,13 @@
             >
           </li>
           
+          <li class="nav-item {{Request::segment(2) == 'galeri' ? 'active' : ''}}">
+            <a class="nav-link" href="{{url('administrator/galeri')}}">
+              <i class="fas fa-fw fa-file-image"></i>
+              <span>Galeri</span></a
+            >
+          </li>
+          
           <!-- Sidebar Toggler (Sidebar) -->
           <div class="text-center d-none d-md-inline">
             <button class="rounded-circle border-0" id="sidebarToggle"></button>

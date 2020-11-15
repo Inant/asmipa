@@ -25,11 +25,14 @@
     <link href="{{ asset('newfrontend/css/bootstrap.css') }}" rel="stylesheet">
     <link href="{{asset('newfrontend/css/fontawesome-all.css')}}" rel="stylesheet">
     <link href="{{asset('newfrontend/css/swiper.css')}}" rel="stylesheet">
-	  <link href="{{asset('newfrontend/css/magnific-popup.css')}}" rel="stylesheet">
-	  <link href="{{asset('newfrontend/css/styles.css')}}" rel="stylesheet">
+    <link href="{{asset('newfrontend/css/magnific-popup.css')}}" rel="stylesheet">
+    <link href="{{asset('newfrontend/css/styles.css')}}" rel="stylesheet">
+    
+    <link href="{{ asset('newfrontend/slider/immersive-slider.css') }}" rel='stylesheet' type='text/css'>
 	
 	<!-- Favicon  -->
     <link rel="icon" href="{{ asset('backend/img/logo.png') }}">
+    
 </head>
 <body data-spy="scroll" data-target=".fixed-top">
     
@@ -50,7 +53,7 @@
         <!-- <a class="navbar-brand logo-text page-scroll" href="index.html">Evolo</a> -->
 
         <!-- Image Logo -->
-        <a class="navbar-brand logo-image" href="{{ url('/') }}"><img src="{{ asset('backend/img/logo.png') }}" alt="alternative"></a>
+        <a class="navbar-brand logo-image" href="{{ url('/') }}"><img src="{{ asset('newfrontend/images/logo-asmipa2.png') }}" alt="alternative"></a>
         
         <!-- Mobile Menu Toggle Button -->
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
@@ -80,6 +83,10 @@
                 <li class="nav-item">
                     <a class="nav-link page-scroll" href="{{ url('berita') }}">Berita</a>
                 </li>
+                
+                <li class="nav-item">
+                    <a class="nav-link page-scroll" href="{{ url('galeri') }}">Galeri</a>
+                </li>
 
                 <li class="nav-item">
                     <a class="nav-link page-scroll" href="#contact">Kontak</a>
@@ -102,7 +109,7 @@
         </div>
     </nav> <!-- end of navbar -->
     <!-- end of navigation -->
-
+    
 
     <!-- Header -->
     <header id="header" class="header">
@@ -126,6 +133,89 @@
         </div> <!-- end of header-content -->
     </header> <!-- end of header -->
     <!-- end of header -->
+
+    <div class="wrapper">
+
+        <div class="main">
+            <div class="page_container">
+              <div id="immersive_slider">
+                @php
+                    $artikel1 = \App\Models\Berita::orderBy('id', 'desc')->take(1)->get()[0];
+                @endphp
+                {{-- start slide 1 --}}
+                <div class="slide" data-blurred="{{ asset('newfrontend/images/testimonials-background.jpg') }}">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="content">
+                                <h3><a href="{{ url('berita', $artikel1->slug ) }}" >{{$artikel1->judul}}</a></h3>
+                                {!!implode(' ', array_slice(explode(' ', $artikel1->konten), 0, 10))!!} ...
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="image">
+                                <a href="{{ url('berita', $artikel1->slug ) }}" >
+                                  <img src="{{ asset('backend/img/berita' . '/' . $artikel1->foto) }}" alt="Slider 1">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {{-- end slide 1 --}}
+                {{-- start slide 2 --}}
+                @php
+                    $artikel2 = \App\Models\Berita::orderBy('id', 'desc')->take(1)->skip(1)->get()[0];
+                @endphp
+                <div class="slide" data-blurred="{{ asset('newfrontend/images/testimonials-background.jpg') }}">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="content">
+                                <h3><a href="{{ url('berita', $artikel2->slug ) }}" >{{$artikel2->judul}}</a></h3>
+                                {!!implode(' ', array_slice(explode(' ', $artikel2->konten), 0, 10))!!} ...
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="image">
+                                <a href="{{ url('berita', $artikel2->slug ) }}" >
+                                <img src="{{ asset('backend/img/berita' . '/' . $artikel2->foto) }}" alt="Slider 1">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {{-- end slide 2 --}}
+                {{-- start slide 3 --}}
+                @php
+                    $galeri = \App\Models\Galeri::orderBy('id', 'desc')->take(1)->get()[0];
+                @endphp
+                <div class="slide" data-blurred="{{ asset('newfrontend/images/testimonials-background.jpg') }}">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <div class="content">
+                                <h3><a href="{{ url('galeri') }}" >{{$galeri->judul}}</a></h3>
+                                {!!implode(' ', array_slice(explode(' ', $galeri->keterangan), 0, 10))!!} ...
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="image">
+                                <a href="{{ url('galeri') }}" >
+                                <img src="{{ asset('backend/img/galeri' . '/' . $galeri->foto) }}" alt="Slider 1">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {{-- start slide 3 --}}
+                <a href="#" class="is-prev">&laquo;</a>
+                <a href="#" class="is-next">&raquo;</a>
+              </div>
+            </div>
+            </div>
+            <div class="benefits">
+            <div class="page_container">
+      
+              </div>
+        </div>
+    </div>
 
     <!-- Details 2 -->
   <div class="basic-2">
@@ -270,30 +360,7 @@
                 <div class="col-lg-4">
                     <h3>Struktur Kepengurusan</h3>
                     <hr>
-                    {{-- <h5>Core feature</h5>
-                    <p>The emailing module basically will speed up your email marketing operations while offering more subscriber control.</p>
-                    <p>Do you need to build lists for your email campaigns? It just got easier with Evolo.</p>
-                    <ul class="list-unstyled li-space-lg">
-                        <li class="media">
-                            <i class="fas fa-check"></i><div class="media-body">List building framework</div>
-                        </li>
-                        <li class="media">
-                            <i class="fas fa-check"></i><div class="media-body">Easy database browsing</div>
-                        </li>
-                        <li class="media">
-                            <i class="fas fa-check"></i><div class="media-body">User administration</div>
-                        </li>
-                        <li class="media">
-                            <i class="fas fa-check"></i><div class="media-body">Automate user signup</div>
-                        </li>
-                        <li class="media">
-                            <i class="fas fa-check"></i><div class="media-body">Quick formatting tools</div>
-                        </li>
-                        <li class="media">
-                            <i class="fas fa-check"></i><div class="media-body">Fast email checking</div>
-                        </li>
-                    </ul> --}}
-                    {{-- <a class="btn-solid-reg mfp-close page-scroll" href="#mitra">REQUEST</a> --}}
+                    
                     <a class="btn-outline-reg mfp-close as-button" href="#screenshots">Kembali</a>
                 </div> <!-- end of col -->
             </div> <!-- end of row -->
@@ -301,176 +368,7 @@
     </div> <!-- end of lightbox-basic -->
     <!-- end of details lightbox 1 -->
 
-    <!-- Details Lightbox 2 -->
-	<div id="details-lightbox-2" class="lightbox-basic zoom-anim-dialog mfp-hide">
-        <div class="container">
-            <div class="row">
-                <button title="Close (Esc)" type="button" class="mfp-close x-button">×</button>
-                <div class="col-lg-8">
-                    <div class="image-container">
-                        <img class="img-fluid" src="{{asset('newfrontend/images/details-lightbox-2.svg')}}" alt="alternative">
-                    </div> <!-- end of image-container -->
-                </div> <!-- end of col -->
-                <div class="col-lg-4">
-                    <h3>Search To Optimize</h3>
-                    <hr>
-                    <h5>Core feature</h5>
-                    <p>The emailing module basically will speed up your email marketing operations while offering more subscriber control.</p>
-                    <p>Do you need to build lists for your email campaigns? It just got easier with Evolo.</p>
-                    <ul class="list-unstyled li-space-lg">
-                        <li class="media">
-                            <i class="fas fa-check"></i><div class="media-body">List building framework</div>
-                        </li>
-                        <li class="media">
-                            <i class="fas fa-check"></i><div class="media-body">Easy database browsing</div>
-                        </li>
-                        <li class="media">
-                            <i class="fas fa-check"></i><div class="media-body">User administration</div>
-                        </li>
-                        <li class="media">
-                            <i class="fas fa-check"></i><div class="media-body">Automate user signup</div>
-                        </li>
-                        <li class="media">
-                            <i class="fas fa-check"></i><div class="media-body">Quick formatting tools</div>
-                        </li>
-                        <li class="media">
-                            <i class="fas fa-check"></i><div class="media-body">Fast email checking</div>
-                        </li>
-                    </ul>
-                    <a class="btn-solid-reg mfp-close page-scroll" href="#mitra">REQUEST</a> <a class="btn-outline-reg mfp-close as-button" href="#screenshots">BACK</a>
-                </div> <!-- end of col -->
-            </div> <!-- end of row -->
-        </div> <!-- end of container -->
-    </div> <!-- end of lightbox-basic -->
-    <!-- end of details lightbox 2 -->
-    <!-- end of details lightboxes -->
-
-
-    {{-- <!-- Pricing -->
-    <div id="pricing" class="cards-2">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                    <h2>Multiple Pricing Options</h2>
-                    <p class="p-heading p-large">We've prepared pricing plans for all budgets so you can get started right away. They're great for small companies and large organizations</p>
-                </div> <!-- end of col -->
-            </div> <!-- end of row -->
-            <div class="row">
-                <div class="col-lg-12">
-
-                    <!-- Card-->
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="card-title">STARTER</div>
-                            <div class="card-subtitle">Just to see what can be achieved</div>
-                            <hr class="cell-divide-hr">
-                            <div class="price">
-                                <span class="currency">$</span><span class="value">199</span>
-                                <div class="frequency">monthly</div>
-                            </div>
-                            <hr class="cell-divide-hr">
-                            <ul class="list-unstyled li-space-lg">
-                                <li class="media">
-                                    <i class="fas fa-check"></i><div class="media-body">Improve Your Email Marketing</div>
-                                </li>
-                                <li class="media">
-                                    <i class="fas fa-check"></i><div class="media-body">User And Admin Rights Control</div>
-                                </li>
-                                <li class="media">
-                                    <i class="fas fa-times"></i><div class="media-body">List Building And Cleaning</div>
-                                </li>
-                                <li class="media">
-                                    <i class="fas fa-times"></i><div class="media-body">Collected Data Management</div>
-                                </li>
-                                <li class="media">
-                                    <i class="fas fa-times"></i><div class="media-body">More Planning And Evaluation</div>
-                                </li>
-                            </ul>
-                            <div class="button-wrapper">
-                                <a class="btn-solid-reg page-scroll" href="#mitra">REQUEST</a>
-                            </div>
-                        </div>
-                    </div> <!-- end of card -->
-                    <!-- end of card -->
-
-                    <!-- Card-->
-                    <div class="card">
-                        <div class="card-body">
-                            <div class="card-title">MEDIUM</div>
-                            <div class="card-subtitle">Very appropriate for the short term</div>
-                            <hr class="cell-divide-hr">
-                            <div class="price">
-                                <span class="currency">$</span><span class="value">299</span>
-                                <div class="frequency">monthly</div>
-                            </div>
-                            <hr class="cell-divide-hr">
-                            <ul class="list-unstyled li-space-lg">
-                                <li class="media">
-                                    <i class="fas fa-check"></i><div class="media-body">Improve Your Email Marketing</div>
-                                </li>
-                                <li class="media">
-                                    <i class="fas fa-check"></i><div class="media-body">User And Admin Rights Control</div>
-                                </li>
-                                <li class="media">
-                                    <i class="fas fa-check"></i><div class="media-body">List Building And Cleaning</div>
-                                </li>
-                                <li class="media">
-                                    <i class="fas fa-check"></i><div class="media-body">Collected Data Management</div>
-                                </li>
-                                <li class="media">
-                                    <i class="fas fa-times"></i><div class="media-body">More Planning And Evaluation</div>
-                                </li>
-                            </ul>
-                            <div class="button-wrapper">
-                                <a class="btn-solid-reg page-scroll" href="#mitra">REQUEST</a>
-                            </div>
-                        </div>
-                    </div> <!-- end of card -->
-                    <!-- end of card -->
-
-                    <!-- Card-->
-                    <div class="card">
-                        <div class="label">
-                            <p class="best-value">Best Value</p>
-                        </div>
-                        <div class="card-body">
-                            <div class="card-title">COMPLETE</div>
-                            <div class="card-subtitle">Must have for large companies</div>
-                            <hr class="cell-divide-hr">
-                            <div class="price">
-                                <span class="currency">$</span><span class="value">399</span>
-                                <div class="frequency">monthly</div>
-                            </div>
-                            <hr class="cell-divide-hr">
-                            <ul class="list-unstyled li-space-lg">
-                                <li class="media">
-                                    <i class="fas fa-check"></i><div class="media-body">Improve Your Email Marketing</div>
-                                </li>
-                                <li class="media">
-                                    <i class="fas fa-check"></i><div class="media-body">User And Admin Rights Control</div>
-                                </li>
-                                <li class="media">
-                                    <i class="fas fa-check"></i><div class="media-body">List Building And Cleaning</div>
-                                </li>
-                                <li class="media">
-                                    <i class="fas fa-check"></i><div class="media-body">Collected Data Management</div>
-                                </li>
-                                <li class="media">
-                                    <i class="fas fa-check"></i><div class="media-body">More Planning And Evaluation</div>
-                                </li>
-                            </ul>
-                            <div class="button-wrapper">
-                                <a class="btn-solid-reg page-scroll" href="#mitra">REQUEST</a>
-                            </div>
-                        </div>
-                    </div> <!-- end of card -->
-                    <!-- end of card -->
-
-                </div> <!-- end of col -->
-            </div> <!-- end of row -->
-        </div> <!-- end of container -->
-    </div> <!-- end of cards-2 -->
-    <!-- end of pricing --> --}}
+    
 
     <!-- Mitra -->
     <div id="mitra" class="basic-4">
@@ -513,155 +411,6 @@
       </div> <!-- end of container -->
     </div> <!-- end of basic-4 -->
   <!-- end of mitra -->
-{{-- 
-
-    <!-- Request -->
-    <div class="form-1">
-        <div class="container">
-            <div class="row">
-                <div class="col-lg-12">
-                  <h2>Daftar Menjadi Mitra</h2>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-lg-12">
-                    <!-- Request Form -->
-                    <div class="form-container">
-                        <form action="{{ route('member.submit') }}" id="requestForm" data-toggle="validator" data-focus="false" enctype="multipart/form-data">
-                          @csrf
-                          <div class="row">
-
-                            <div class="col-lg-6">
-                              <div class="form-group">
-                                  <input type="text" class="form-control-input" id="nama" name="nama" required>
-                                  <label class="label-control" for="nama">Nama Lengkap</label>
-                                  <div class="help-block with-errors"></div>
-                              </div>
-                            </div>
-
-                            <div class="col-lg-6">
-                              <div class="form-group">
-                                  <input type="email" class="form-control-input" id="email" name="email" required>
-                                  <label class="label-control" for="email">Email</label>
-                                  <div class="help-block with-errors"></div>
-                              </div>
-                            </div>
-                            
-                            <div class="col-lg-6">
-                              <div class="form-group">
-                                  <input type="text" class="form-control-input" id="tempat_lahir" name="tempat_lahir" required>
-                                  <label class="label-control" for="tempat_lahir">Tempat Lahir</label>
-                                  <div class="help-block with-errors"></div>
-                              </div>
-                            </div>
-
-                            <div class="col-lg-6">
-                              <div class="form-group">
-                                  <input type="date" class="form-control-input" id="tgl_lahir" name="tgl_lahir" required>
-                                  <label class="label-control" for="tgl_lahir">Tanggal Lahir</label>
-                                  <div class="help-block with-errors"></div>
-                              </div>
-                            </div>
-                            
-                            <div class="col-lg-6">
-                              <div class="form-group">
-                                  <input type="file" class="form-control-input" id="ktp" name="ktp" required>
-                                  <label class="label-control" for="ktp">Foto / Scan KTP</label>
-                                  <div class="help-block with-errors"></div>
-                              </div>
-                            </div>
-
-                            <div class="col-lg-6">
-                              <div class="form-group">
-                                  <input type="text" class="form-control-input" id="alamat" name="alamat" required>
-                                  <label class="label-control" for="alamat">Alamat</label>
-                                  <div class="help-block with-errors"></div>
-                              </div>
-                            </div>
-
-                            <div class="col-lg-6">
-                              <div class="form-group">
-                                  <input type="text" class="form-control-input" id="no_telepon" name="no_telepon" required>
-                                  <label class="label-control" for="no_telepon">Nomor Telepon</label>
-                                  <div class="help-block with-errors"></div>
-                              </div>
-                            </div>
-
-                            <div class="col-lg-6">
-                              <div class="form-group">
-                                  <input type="text" class="form-control-input" id="nama_perusahaan" name="nama_perusahaan" required>
-                                  <label class="label-control" for="nama_perusahaan">Nama Perusahaan</label>
-                                  <div class="help-block with-errors"></div>
-                              </div>
-                            </div>
-
-                            <div class="col-lg-6">
-                              <div class="form-group">
-                                  <input type="text" class="form-control-input" id="nama_pemilik" name="nama_pemilik" required>
-                                  <label class="label-control" for="nama_pemilik">Nama Pemilik</label>
-                                  <div class="help-block with-errors"></div>
-                              </div>
-                            </div>
-
-                            <div class="col-lg-6">
-                              <div class="form-group">
-                                  <input type="text" class="form-control-input" id="alamat_perusahaan" name="alamat_perusahaan" required>
-                                  <label class="label-control" for="alamat_perusahaan">Alamat Perusahaan</label>
-                                  <div class="help-block with-errors"></div>
-                              </div>
-                            </div>
-
-                            <div class="col-lg-6">
-                              <div class="form-group">
-                                  <input type="file" class="form-control-input" id="no_ahu" name="no_ahu" required>
-                                  <label class="label-control" for="no_ahu">Nomor AHU / Akta Notaris Perusahaan</label>
-                                  <div class="help-block with-errors"></div>
-                              </div>
-                            </div>
-
-                          </div>
-
-                            <div class="form-group">
-                                <input type="email" class="form-control-input" id="remail" name="remail" required>
-                                <label class="label-control" for="remail">Email</label>
-                                <div class="help-block with-errors"></div>
-                            </div>
-                            <div class="form-group">
-                                <input type="text" class="form-control-input" id="rphone" name="rphone" required>
-                                <label class="label-control" for="rphone">Phone</label>
-                                <div class="help-block with-errors"></div>
-                            </div>
-                            <div class="form-group">
-                                <select class="form-control-select" id="rselect" required>
-                                    <option class="select-option" value="" disabled selected>Interested in...</option>
-                                    <option class="select-option" value="Personal Loan">Starter</option>
-                                    <option class="select-option" value="Car Loan">Medium</option>
-                                    <option class="select-option" value="House Loan">Complete</option>
-                                </select>
-                                <div class="help-block with-errors"></div>
-                            </div>
-                            <div class="form-group checkbox">
-                                <input type="checkbox" id="rterms" value="Agreed-to-Terms" name="rterms" required>I agree with Evolo's stated <a href="privacy-policy.html">Privacy Policy</a> and <a href="terms-conditions.html">Terms & Conditions</a>
-                                <div class="help-block with-errors"></div>
-                            </div>
-                            <div class="form-group">
-                                <button type="submit" class="form-control-submit-button">REQUEST</button>
-                            </div>
-                            <div class="form-message">
-                                <div id="rmsgSubmit" class="h3 text-center hidden"></div>
-                            </div>
-                        </form>
-                    </div> <!-- end of form-container -->
-                    <!-- end of request form -->
-
-                </div> <!-- end of col -->
-            </div> <!-- end of row -->
-        </div> <!-- end of container -->
-    </div> <!-- end of form-1 -->
-    <!-- end of request -->
-
-     --}}
-
 
     <!-- Contact -->
     <div id="contact" class="form-2">
@@ -768,7 +517,7 @@
     </div> <!-- end of copyright --> 
     <!-- end of copyright -->
     
-    	
+    
     <!-- Scripts -->
     <script src="{{asset('newfrontend/js/jquery.min.js')}}"></script> <!-- jQuery for Bootstrap's JavaScript plugins -->
     <script src="{{asset('newfrontend/js/popper.min.js')}}"></script> <!-- Popper tooltip library for Bootstrap -->
@@ -778,5 +527,14 @@
     <script src="{{asset('newfrontend/js/jquery.magnific-popup.js')}}"></script> <!-- Magnific Popup for lightboxes -->
     <script src="{{asset('newfrontend/js/validator.min.js')}}"></script> <!-- Validator.js - Bootstrap plugin that validates forms -->
     <script src="{{asset('newfrontend/js/scripts.js')}}"></script> <!-- Custom scripts -->
+    <script type="text/javascript" src="{{ asset('newfrontend/slider/jquery.immersive-slider.js') }}"></script>
+    <script type="text/javascript">
+  	  $(document).ready( function() {
+  	    $("#immersive_slider").immersive_slider({
+  	      container: ".main"
+  	    });
+  	  });
+
+    </script>
 </body>
 </html>

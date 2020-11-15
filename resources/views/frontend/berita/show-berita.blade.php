@@ -51,7 +51,7 @@
         <!-- <a class="navbar-brand logo-text page-scroll" href="index.html">Evolo</a> -->
 
         <!-- Image Logo -->
-        <a class="navbar-brand logo-image" href="{{ url('/') }}"><img src="{{ asset('backend/img/logo.png') }}" alt="alternative"></a>
+        <a class="navbar-brand logo-image" href="{{ url('/') }}"><img src="{{ asset('newfrontend/images/logo-asmipa2.png') }}" alt="alternative"></a>
         
         <!-- Mobile Menu Toggle Button -->
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
@@ -81,7 +81,9 @@
                 <li class="nav-item">
                     <a class="nav-link page-scroll active" href="{{ url('berita') }}">Berita</a>
                 </li>
-
+                <li class="nav-item">
+                    <a class="nav-link page-scroll" href="{{ url('galeri') }}">Galeri</a>
+                </li>
                 <li class="nav-item">
                     <a class="nav-link page-scroll" href="{{ url('/'.'#contact') }}">Kontak</a>
                 </li>

@@ -20,6 +20,10 @@ Route::get('berita', 'Frontend\FBeritaController@index');
 
 Route::get('berita/{slug}', 'Frontend\FBeritaController@show');
 
+Route::get('galeri', 'Frontend\FGaleriController@index');
+
+Route::get('galeri/{id}', 'Frontend\FGaleriController@getGaleri');
+
 Route::group(['prefix' => 'member'], function () {
     Route::get('/', function ()
     {
@@ -49,6 +53,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::get('member/disapprove/{id}', 'Backend\MemberController@disapprove')->name('member.disapprove');
         Route::resource('member', 'Backend\MemberController');
         Route::resource('berita', 'Backend\BeritaController');
+        Route::resource('galeri', 'Backend\GaleriController');
 
     });
 
